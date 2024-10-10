@@ -4,8 +4,8 @@ import config from '../config/config'
 export default {
     connect: async () => {
         try {
-            await mongoose.connect(config.DATABASE_URL as string)
-            return mongoose.connection;
+            await mongoose.connect(config.MONGODB_DATABASE_URL as string)
+            return mongoose.connection
         } catch (error) {
             throw error
         }

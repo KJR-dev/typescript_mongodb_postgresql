@@ -1,5 +1,5 @@
-import dotenvFlow from 'dotenv-flow';
-dotenvFlow.config();
+import dotenvFlow from 'dotenv-flow'
+dotenvFlow.config()
 
 export default {
     //General
@@ -8,6 +8,6 @@ export default {
     SERVER_URL: process.env.SERVER_URL,
 
     //Database
-    DATABASE_URL: process.env.DATABASE_URL
+    MONGODB_DATABASE_URL: process.env.MONGODB_DATABASE_URL
 }
 
