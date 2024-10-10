@@ -7,6 +7,7 @@ import httpError from './util/httpError'
 import { Request, Response } from 'express'
 import helmet from 'helmet'
 import cors from 'cors'
+import 'reflect-metadata'
 
 const app: Application = express()
 

@@ -1,10 +1,10 @@
 import app from './app'
-import config from './config/config'
+import Config from './config/config'
 import { initRateLimiter } from './config/rateLimter'
 import databaseService from './service/databaseService'
 import logger from './util/logger'
 
-const server = app.listen(config.PORT)
+const server = app.listen(Config.PORT)
 
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
 ;(async () => {
@@ -22,18 +22,19 @@ const server = app.listen(config.PORT)
 
         logger.info(`APPLICATION_STARTD`, {
             meta: {
-                PORT: config.PORT,
-                SERVER_URL: config.SERVER_URL
+                PORT: Config.PORT,
+                SERVER_URL: Config.SERVER_URL
             }
         })
-    } catch (error) {
-        logger.info(`APPLICATION_ERROR`, { meta: error })
-        server.close((error) => {
-            if (error) {
-                logger.info(`APPLICATION_ERROR`, { meta: error })
+    } catch (error: unknown) {
+        logger.info('APPLICATION_ERROR', { meta: error });
+    
+        server.close((closeError?: Error) => {
+            if (closeError) {
+                logger.info('APPLICATION_ERROR', { meta: closeError });
             }
-            process.exit(1)
-        })
+            process.exit(1);
+        });
     }
 })()
 

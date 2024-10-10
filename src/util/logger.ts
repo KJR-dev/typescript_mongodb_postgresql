@@ -1,7 +1,7 @@
 import { createLogger, format, transports } from 'winston'
 import { ConsoleTransportInstance, FileTransportInstance } from 'winston/lib/winston/transports'
 import util from 'util'
-import config from '../config/config'
+import Config from '../config/config'
 import { EApplicationEnvironment } from '../constant/application'
 import path from 'path'
 import * as sourceMapSupport from 'source-map-support'
@@ -48,7 +48,7 @@ const consoleLogFormat = format.printf((info) => {
 })
 
 const consoleTransport = (): Array<ConsoleTransportInstance> => {
-    if (config.ENV === EApplicationEnvironment.DEVELOPMENT) {
+    if (Config.ENV === EApplicationEnvironment.DEVELOPMENT) {
         return [
             new transports.Console({
                 level: 'info',
@@ -90,7 +90,7 @@ const fileLogFormat = format.printf((info) => {
 const fileTransport = (): Array<FileTransportInstance> => {
     return [
         new transports.File({
-            filename: path.join(__dirname, '../', '../', 'logs', `${config.ENV}.log`),
+            filename: path.join(__dirname, '../', '../', 'logs', `${Config.ENV}.log`),
             level: 'info',
             format: format.combine(format.timestamp(), fileLogFormat)
         })
@@ -100,11 +100,11 @@ const fileTransport = (): Array<FileTransportInstance> => {
 //Mongodb logger
 const mongodbTransport = (): Array<MongoDBTransportInstance> => {
     // Skip MongoDB transport in test environment
-    if (config.ENV !== 'test') {
+    if (Config.ENV !== 'test') {
         return [
             new transports.MongoDB({
                 level: 'info',
-                db: config.MONGODB_DATABASE_URL as string,
+                db: Config.MONGODB_DATABASE_URL as string,
                 metaKey: 'meta',
                 expireAfterSeconds: 3600 * 24 * 30,
                 // options:{

@@ -1,7 +1,7 @@
 import { Request } from 'express'
 import { THttpError } from '../types/types'
 import responseMessage from '../constant/responseMessage'
-import config from '../config/config'
+import Config from '../config/config'
 import { EApplicationEnvironment } from '../constant/application'
 import logger from './logger'
 
@@ -21,7 +21,7 @@ export default (err: Error | unknown, req: Request, errorStatusCode: number = 50
     }
     //log
     logger.info('CONTROLLER_RESPONSE', { meta: errorObj })
-    if (config.ENV === EApplicationEnvironment.PRODUCTION) {
+    if (Config.ENV === EApplicationEnvironment.PRODUCTION) {
         delete errorObj.request.ip
         delete errorObj.trace
     }

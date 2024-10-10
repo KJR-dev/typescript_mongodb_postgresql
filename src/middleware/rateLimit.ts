@@ -2,13 +2,13 @@ import { NextFunction, Request, Response } from 'express'
 import { rateLimiterMongo } from '../config/rateLimter'
 import responseMessage from '../constant/responseMessage'
 import httpError from '../util/httpError'
-import config from '../config/config'
+import Config from '../config/config'
 import { EApplicationEnvironment } from '../constant/application'
 
 // Update middleware to accept custom points
 const rateLimit = (points: number) => {
     return (req: Request, _: Response, next: NextFunction) => {
-        if (config.ENV === EApplicationEnvironment.DEVELOPMENT) {
+        if (Config.ENV === EApplicationEnvironment.DEVELOPMENT) {
             return next()
         }
         if (rateLimiterMongo) {
