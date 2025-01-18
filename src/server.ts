@@ -1,7 +1,7 @@
 import app from './app'
 import Config from './config/config'
 import { initRateLimiter } from './config/rateLimter'
-import databaseService from './service/databaseService'
+import databaseService from './services/databaseService'
 import logger from './util/logger'
 
 const server = app.listen(Config.PORT)

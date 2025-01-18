@@ -1,8 +1,8 @@
-import { Request, Response } from 'express'
-import Config from '../config/config'
-import { THttpResponse } from '../types/types'
-import { EApplicationEnvironment } from '../constant/application'
-import logger from './logger'
+import { Request, Response } from 'express';
+import Config from '../config/config';
+import { THttpResponse } from '../types/httpTypes';
+import { EApplicationEnvironment } from '../constant/application';
+import logger from './logger';
 
 export default (req: Request, res: Response, responseStatusCode: number, responseMessage: string, data: unknown = null): void => {
     const response: THttpResponse = {
@@ -15,15 +15,15 @@ export default (req: Request, res: Response, responseStatusCode: number, respons
         },
         message: responseMessage,
         data: data
-    }
+    };
     //log
-    logger.info('CONTROLLER_RESPONSE', { meta: response })
+    logger.info('CONTROLLER_RESPONSE', { meta: response });
 
     //Prodection Env check
     if (Config.ENV === EApplicationEnvironment.PRODUCTION) {
-        delete response.request.ip
+        delete response.request.ip;
     }
 
-    res.status(responseStatusCode).json(response)
-}
+    res.status(responseStatusCode).json(response);
+};
 

@@ -14,7 +14,17 @@
         "prepare": "husky",
         "migrate:dev": "cross-env MIGRATE_MODE=development node script/migration.js",
         "migrate:prod": "cross-env MIGRATE_MODE=production node script/migration.js",
-        "test": "jest --watch --runInBand"
+        "test": "jest --watch --runInBand",
+
+        "migration:generate:development": "cross-env NODE_ENV=development typeorm-ts-node-commonjs migration:generate",
+        "migration:generate:development:run": "cross-env NODE_ENV=development typeorm-ts-node-commonjs migration:run",
+        "migration:generate:development:revert": "cross-env NODE_ENV=development typeorm-ts-node-commonjs migration:revert",
+        "migration:generate:development:create": "cross-env NODE_ENV=development typeorm-ts-node-commonjs migration:create",
+
+        "migration:generate:production": "cross-env NODE_ENV=production typeorm-ts-node-commonjs migration:generate",
+        "migration:generate:production:run": "cross-env NODE_ENV=development typeorm-ts-node-commonjs migration:run",
+        "migration:generate:production:revert": "cross-env NODE_ENV=development typeorm-ts-node-commonjs migration:revert",
+        "migration:generate:production:create": "cross-env NODE_ENV=development typeorm-ts-node-commonjs migration:create"
     },
     "lint-staged": {
         "*.ts": [
@@ -29,6 +39,7 @@
         "@commitlint/config-conventional": "^19.5.0",
         "@eslint/js": "^9.12.0",
         "@types/eslint__js": "^8.42.3",
+        "@types/eslint-config-prettier": "^6.11.3",
         "@types/express": "^5.0.0",
         "@types/jest": "^29.5.13",
         "@types/node": "^22.7.5",
