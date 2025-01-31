@@ -6,4 +6,3 @@ import { Request, Response } from 'express';
 export default (err: THttpError, _req: Request, res: Response, _: NextFunction) => {
     res.status(err.statusCode).json(err);
 };
-

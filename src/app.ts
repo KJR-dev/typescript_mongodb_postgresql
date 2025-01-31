@@ -16,7 +16,7 @@ app.use(helmet()) //Helmet
 app.use(
     cors({
         methods: ['POST', 'GET', 'PATCH', 'DELETE', 'OPTION', 'HEAD'],
-        origin: ['https://client.com'],
+        // origin: ['https://client.com'],
         credentials: true
     })
 )
@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, '../', 'public')))
 //Routes
 app.use('/api/v1', router)
 
-//404 Handler
+//404 Handler for router not found
 app.use((req: Request, _: Response, next: NextFunction) => {
     try {
         throw new Error(responseMessage.NOT_FOUND('route'))
