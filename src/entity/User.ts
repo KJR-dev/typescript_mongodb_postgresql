@@ -7,18 +7,17 @@ export class User {
     id: number | undefined;
 
     @Column()
-    firstName!: string;
+    firstName: string;
 
     @Column()
-    lastName!: string;
+    lastName: string;
 
     @Column({ unique: true })
-    email!: string;
+    email: string;
 
     @Column()
-    password!: string;
+    password: string;
 
     @Column({ type: 'enum', enum: Object.values(Roles),default:Roles.CUSTOMER })
-    role!: string;
-}
-
+    role: string;
+}  

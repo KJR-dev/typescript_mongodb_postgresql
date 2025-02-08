@@ -1,4 +1,4 @@
-export type THttpResponse = {
+export type THttpResponse <T = unknown>= {
     success: boolean
     statusCode: number
     request: {
@@ -7,7 +7,7 @@ export type THttpResponse = {
         url: string
     }
     message: string
-    data: unknown
+    data: T
 }
 
 export type THttpError = {

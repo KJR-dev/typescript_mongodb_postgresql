@@ -3,26 +3,26 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 export class News {
     @PrimaryGeneratedColumn()
-    id!: number;
+    id: number;
 
     @Column({ length: 50 })
-    authorName!: string;
+    authorName: string;
 
     @Column({ length: 150 })
-    title!: string;
+    title: string;
 
     @Column({
         type: 'text'
     })
-    content!: string;
+    content: string;
 
     @Column({
         type: 'enum',
         enum: ['Latest article', 'Feature article', 'General article']
     })
-    articles!: string;
+    articles: string;
 
     @Column()
-    date!: string;
+    date: string;
 }
 

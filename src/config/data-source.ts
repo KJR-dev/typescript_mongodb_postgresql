@@ -4,6 +4,7 @@ import { User } from '../entity/User';
 import Config from './config';
 import { News } from '../entity/News';
 import { News2 } from '../entity/News2';
+import { RefreshToken } from '../entity/RefreshToken';
 
 export const AppDataSource = new DataSource({
     type: 'postgres',
@@ -16,7 +17,7 @@ export const AppDataSource = new DataSource({
     synchronize: false,
     // logging: Config.ENV === 'test' || Config.ENV === 'development',
     logging: false,
-    entities: [User, News, News2],
+    entities: [User, News, News2, RefreshToken],
     migrations: ['src/migration/*.ts'],
     subscribers: []
 });
